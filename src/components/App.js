@@ -13,6 +13,7 @@ const App = () => {
     }
   }
   
+  
   function getWeather() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_KEY}`)
       .then(response => response.json())
