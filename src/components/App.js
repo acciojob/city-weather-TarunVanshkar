@@ -5,17 +5,17 @@ import './../styles/App.css';
 const App = () => {
   const API_KEY = "344a4d0c4ee9759b97c06aeffe807c61";
   const [search, setSearch] = useState("");
-  const [weatherData, setWeatherData] = useState("");
+  const [weatherData, setWeatherData] = useState({});
 
   function handleEnter(event) {
-    if (event.key == "Enter") {
+    if (event.key === "Enter") {
       getWeather();
     }
   }
   
-  
+
   function getWeather() {
-    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_KEY}`)
+    fetch(`https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${API_KEY}&units=metric`)
       .then(response => response.json())
       .then((data) => {
         console.log(data);
@@ -28,6 +28,7 @@ const App = () => {
         setSearch('')
         setWeatherData(obj);
       })
+      .catch(error => console.log(error))
   }
   getWeather();
   return (
